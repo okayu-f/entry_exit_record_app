@@ -27,6 +27,10 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem 'will_paginate',              '3.1.8'
+gem 'bootstrap-will_paginate',    '1.0.0'
+gem 'bootstrap-sass',             '3.4.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
