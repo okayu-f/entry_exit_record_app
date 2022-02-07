@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  exit_at: 2022-02-07 23:47:14
+
+two:
+  user: two
+  exit_at: 2022-02-07 23:47:14
