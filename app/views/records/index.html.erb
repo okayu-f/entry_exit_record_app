@@ -1,0 +1,16 @@
+<h1>入退室一覧</h1>
+
+<ul class="records">
+  <% @records.each do |record| %>
+    <li>
+       <span>名前：</span>    
+       <%= User.find_by(id:record.user_id).name %>
+       <span>入室時間：</span>
+       <%= record.created_at %> 
+       <span>退室時間：</span>
+       <%= record.exit_at %> <span></span>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/">ホームに戻る</a>

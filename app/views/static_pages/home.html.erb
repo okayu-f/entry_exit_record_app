@@ -1,6 +1,23 @@
 <h1>ホーム</h1>
-<a href="/users/">ユーザー一覧</a>
+<a href="/users">ユーザー一覧</a>
 <br>
 <a href="/users/new">ユーザー追加</a>
 <br>
 <a href="/static_pages/help">マニュアル（準備中）</a>
+<br>
+<a href="/records/index">入退室一覧</a>
+
+
+<%= form_with url: "/entry" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.submit "入室", class: "btn btn-primary" %>
+<% end %>
+
+<%= form_with url: "/exit" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.submit "退室", class: "btn btn-primary" %>
+<% end %>
