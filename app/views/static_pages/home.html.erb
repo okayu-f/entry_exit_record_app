@@ -21,3 +21,40 @@
 
   <%= f.submit "退室", class: "btn btn-primary" %>
 <% end %>
+
+<table border='1'>
+  <caption>入室者一覧</caption>
+  <thead>
+    <tr><th>名前</th><th>入室時間</th></tr>
+  </thead>
+  <tbody>
+    <% if @records_in_room %>
+      <% @records_in_room.each do |record| %>
+        <tr>
+          <td><%= User.find_by(id:record.user_id).name %></td>
+          <td><%= record.created_at %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>入室者なし</td>
+        <td>-</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table border='1'>
+  <caption>ユーザー一覧</caption>
+  <thead>
+    <tr><th>名前</th></tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

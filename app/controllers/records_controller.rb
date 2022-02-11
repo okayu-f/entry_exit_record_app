@@ -44,6 +44,7 @@ class RecordsController < ApplicationController
   end
 
 # ユーザーが居るかいないか判定リファクタリングできる
+
   def index
     @records = Record.all
   end
