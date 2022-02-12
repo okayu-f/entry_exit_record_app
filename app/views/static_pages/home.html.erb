@@ -3,58 +3,46 @@
 <br>
 <a href="/users/new">ユーザー追加</a>
 <br>
-<a href="/static_pages/help">マニュアル（準備中）</a>
-<br>
+<!-- <a href="/static_pages/help">マニュアル（準備中）</a> 
+<br> -->
 <a href="/records/index">入退室一覧</a>
 
 
+<h2>ユーザー一覧</h2>
 <%= form_with url: "/entry" do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
-
+  <% @users.each do |user| %>
+    <%= f.radio_button :name, user.name %>
+    <%= f.label :name, user.name %>
+    <br>
+  <% end %>
   <%= f.submit "入室", class: "btn btn-primary" %>
 <% end %>
 
-<%= form_with url: "/exit" do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
-
-  <%= f.submit "退室", class: "btn btn-primary" %>
+<h2>入室者一覧</h2>
+<% if @records_in_room.empty? %>
+ <p>入室者なし</p>
+<% else %>
+  <table border='1'>
+    <thead>
+      <tr><th>名前</th><th>入室時間</th></tr>
+    </thead>
+    <tbody>
+        <% @records_in_room.each do |record| %>
+          <tr>
+            <td><%= User.find_by(id:record.user_id).name %></td>
+            <td><%= record.created_at %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
 <% end %>
 
-<table border='1'>
-  <caption>入室者一覧</caption>
-  <thead>
-    <tr><th>名前</th><th>入室時間</th></tr>
-  </thead>
-  <tbody>
-    <% if @records_in_room %>
-      <% @records_in_room.each do |record| %>
-        <tr>
-          <td><%= User.find_by(id:record.user_id).name %></td>
-          <td><%= record.created_at %></td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td>入室者なし</td>
-        <td>-</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<table border='1'>
-  <caption>ユーザー一覧</caption>
-  <thead>
-    <tr><th>名前</th></tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<h2>退室する</h2>
+<%= form_with url: "/exit" do |f| %>
+  <% @records_in_room.each do |record| %>
+    <%= f.radio_button :name, User.find_by(id:record.user_id).name %>
+    <%= f.label :name, User.find_by(id:record.user_id).name %>
+    <br>
+  <% end %>
+  <%= f.submit "退室", class: "btn btn-primary" %>
+<% end %>
