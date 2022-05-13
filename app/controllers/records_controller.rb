@@ -34,11 +34,11 @@ class RecordsController < ApplicationController
           render 'static_pages/home'
         end
       else
-        flash[:success] = 'ユーザーは入室していません'
+        flash[:danger] = 'ユーザーは入室していません'
         redirect_to root_url
       end
     else
-      flash[:success] = 'ユーザーが見つかりませんでした'
+      flash[:danger] = 'ユーザーが見つかりませんでした'
       redirect_to root_url
     end
   end

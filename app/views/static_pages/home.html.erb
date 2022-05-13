@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>入退室記録アプリ</h1>
-  <div class="row mb-5">
-    <div class="col-sm-6">
+  <h1 class="my-5">入退室記録</h1>
+  <div class="row my-5">
+    <div class="col-sm-4 mx-5">
       <h2>ユーザー一覧</h2>
       <%= form_with url: "/entry" do |f| %>
         <table class="table table-striped">
@@ -19,10 +19,10 @@
             <% end %>
           </tbody>
         </table>
-        <%= f.submit "入室", class: "btn btn-secondry" %>
+        <%= f.submit "入室", class: "btn btn-secondary" %>
       <% end %>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4 mx-5">
       <h2>入室者一覧</h2>
       <% if @records_in_room.empty? %>
         <p>入室者なし</p>
@@ -38,11 +38,11 @@
             </thead>
             <tbody>
               <% @records_in_room.each do |record| %>
-                <tr>
+                <tr class="position-relative">
                   <td><%= f.label :name, User.find_by(id:record.user_id).name %></td>
                   <td><%= record.created_at %></td>
                   <td>
-                    <%= f.radio_button :name, User.find_by(id:record.user_id).name %>
+                    <%= f.radio_button :name, User.find_by(id:record.user_id).name, class: "" %>
                   </td>
                 </tr>
               <% end %>
@@ -53,12 +53,16 @@
       <% end %>
     </div>
   </div>
-  <h2>管理</h2>
-  <a href="/users">ユーザー一覧</a>
-  <br>
-  <a href="/users/new">ユーザー追加</a>
-  <br>
-  <!-- <a href="/static_pages/help">マニュアル（準備中）</a> 
+  <div class="row my-5 d-flex">
+    <div class="col-sm-4 mx-5">
+      <h2 class="my-5">管理</h2>
+      <a href="/users">ユーザー一覧</a>
+      <br>
+      <a href="/users/new">ユーザー追加</a>
+      <br>
+      <!-- <a href="/static_pages/help">マニュアル（準備中）</a> 
   <br> -->
-  <a href="/records/index">入退室一覧</a>
+      <a href="/records/index">入退室一覧</a>
+    </div>
+  </div>
 </div>
