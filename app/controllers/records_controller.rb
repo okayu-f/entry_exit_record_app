@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
     if @user
       @record = Record.where(exit_at: nil).find_by(user_id: @user.id)
       if @record
-        flash[:success] = 'ユーザーはすでに入室しています。'
+        flash[:warning] = 'ユーザーはすでに入室しています。'
         redirect_to root_url
       else
         @record = @user.records.build()
@@ -16,7 +16,7 @@ class RecordsController < ApplicationController
         end
       end
     else
-      flash[:success] = 'ユーザーが見つかりませんでした'
+      flash[:warning] = 'ユーザーが見つかりませんでした'
       redirect_to root_url
     end
   end
@@ -34,11 +34,11 @@ class RecordsController < ApplicationController
           render 'static_pages/home'
         end
       else
-        flash[:danger] = 'ユーザーは入室していません'
+        flash[:warning] = 'ユーザーは入室していません'
         redirect_to root_url
       end
     else
-      flash[:danger] = 'ユーザーが見つかりませんでした'
+      flash[:warning] = 'ユーザーが見つかりませんでした'
       redirect_to root_url
     end
   end
